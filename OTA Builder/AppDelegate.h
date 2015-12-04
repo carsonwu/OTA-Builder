@@ -12,9 +12,9 @@
 
 @property (weak) IBOutlet NSButton *buildButton;
 @property (weak) IBOutlet NSPathControl *projectPath;
-@property (weak) IBOutlet NSPathControl *repoPath;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
 @property (weak) IBOutlet NSTextField *targetName;
+@property (weak) IBOutlet NSTextField *provisioningProfileName;
 @property (unsafe_unretained) IBOutlet NSTextView *outputText;
 - (IBAction)startTask:(id)sender;
 - (IBAction)stopTask:(id)sender;

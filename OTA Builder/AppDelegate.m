@@ -33,7 +33,7 @@
         //3
         @try {
             // 01
-            NSString *path = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"BuildScript" ofType:@"command"]];
+            NSString *path = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"OTAScript" ofType:@"sh"]];
             // 02
             self.buildTask = [[NSTask alloc] init];
             self.buildTask.launchPath = path;
@@ -59,19 +59,23 @@
     self.outputText.string = @"";
     
     NSString *projectLocation = self.projectPath.URL.path;
-    NSString *finalLocation = self.repoPath.URL.path;
     
-    NSString *projectName = self.projectPath.URL.lastPathComponent;
-    NSString *xcodeProjectFile = [projectLocation stringByAppendingString:[NSString stringWithFormat:@"/%@.xcodeproj", projectName]];
+    NSString *projectName = self.targetName.stringValue;//self.projectPath.URL.lastPathComponent;
+    NSString *archiveFile = [NSString stringWithFormat:@"%@.xcarchive", projectName];
+    NSString *xcodeProjectFile = [NSString stringWithFormat:@"%@.xcodeproj", projectName];
+    NSString *provisioningProfile = self.provisioningProfileName.stringValue;
     
-    NSString *buildLocation = projectLocation;//[projectLocation stringByAppendingString:@"/build/Release-iphoneos"];
+//    NSString *buildLocation = projectLocation;//[projectLocation stringByAppendingString:@"/build/Release-iphoneos"];
     
     NSMutableArray *arguments = [[NSMutableArray alloc] init];
+    [arguments addObject:projectLocation];
     [arguments addObject:xcodeProjectFile];
-    [arguments addObject:self.targetName.stringValue];
-    [arguments addObject:buildLocation];
     [arguments addObject:projectName];
-    [arguments addObject:finalLocation];
+    [arguments addObject:archiveFile];
+    [arguments addObject:provisioningProfile];
+//    [arguments addObject:buildLocation];
+//    [arguments addObject:projectName];
+//    [arguments addObject:finalLocation];
     
     [self.buildButton setEnabled:NO];
     [self.spinner startAnimation:self];
