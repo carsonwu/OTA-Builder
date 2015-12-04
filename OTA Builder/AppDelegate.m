@@ -38,6 +38,21 @@
             self.buildTask = [[NSTask alloc] init];
             self.buildTask.launchPath = path;
             self.buildTask.arguments = arguments;
+            
+            //output handling
+            self.outputPipe = [[NSPipe alloc] init];
+            self.buildTask.standardOutput = self.outputPipe;
+            [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+            [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[self.outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *note) {
+                NSData *outputData = [self.outputPipe fileHandleForReading].availableData;
+                NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.outputText.string = [self.outputText.string stringByAppendingString:[NSString stringWithFormat:@"\n%@", outputString]];
+                    [self.outputText scrollRangeToVisible:NSMakeRange(self.outputText.string.length, 0)];
+                });
+                [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+            }];
+            
             [self.buildTask launch];
             [self.buildTask waitUntilExit];
         }
