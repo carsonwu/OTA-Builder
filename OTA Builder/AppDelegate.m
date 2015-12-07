@@ -98,6 +98,9 @@
 }
 
 - (IBAction)stopTask:(id)sender {
+    if ([self.buildTask isRunning]) {
+        [self.buildTask terminate];
+    }
 }
 
 @end
