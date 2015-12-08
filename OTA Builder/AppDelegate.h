@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "plistGenerator.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

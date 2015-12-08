@@ -74,13 +74,15 @@
     self.outputText.string = @"";
     
     NSString *projectLocation = self.projectPath.URL.path;
-    
     NSString *projectName = self.targetName.stringValue;//self.projectPath.URL.lastPathComponent;
     NSString *archiveFile = [NSString stringWithFormat:@"%@.xcarchive", projectName];
     NSString *xcodeProjectFile = [NSString stringWithFormat:@"%@.xcodeproj", projectName];
     NSString *provisioningProfile = self.provisioningProfileName.stringValue;
-    
-//    NSString *buildLocation = projectLocation;//[projectLocation stringByAppendingString:@"/build/Release-iphoneos"];
+    //get current timestamp
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     NSMutableArray *arguments = [[NSMutableArray alloc] init];
     [arguments addObject:projectLocation];
@@ -88,13 +90,21 @@
     [arguments addObject:projectName];
     [arguments addObject:archiveFile];
     [arguments addObject:provisioningProfile];
-//    [arguments addObject:buildLocation];
+    [arguments addObject:dateString];
 //    [arguments addObject:projectName];
 //    [arguments addObject:finalLocation];
     
     [self.buildButton setEnabled:NO];
     [self.spinner startAnimation:self];
     [self runScriptWithArguments:arguments];
+    
+    //create .plist file
+    plistGenerator *plist = [[plistGenerator alloc] init];
+    plist.exportPath = projectLocation;
+    plist.ftpUrl = @"www.google.com";
+    plist.ipaTitle = projectName;
+    plist.fileName = [NSString stringWithFormat:@"%@-%@", projectName, dateString];
+    [plist generatePlistFile];
 }
 
 - (IBAction)stopTask:(id)sender {
