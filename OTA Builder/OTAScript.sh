@@ -18,4 +18,7 @@ xcodebuild clean archive -archivePath "${3}" -scheme "${3}"
 echo "*********************************"
 echo "Beginning to export your archive"
 echo "*********************************"
-xcodebuild -exportArchive -archivePath "${4}" -exportPath "${3}" -exportFormat ipa -exportProvisioningProfile "${5}"
+xcodebuild -exportArchive -archivePath "${4}" -exportPath "${6}" -exportFormat ipa -exportProvisioningProfile "${5}"
+
+#delete the archive file after the export process completed
+rm -r "${4}"
