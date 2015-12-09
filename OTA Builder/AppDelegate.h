@@ -22,9 +22,11 @@
 @property (unsafe_unretained) IBOutlet NSTextView *outputText;
 @property (weak) IBOutlet NSScrollView *outputView;
 @property (weak) IBOutlet NSButton *chooseProjectButton;
+@property (weak) IBOutlet NSButton *clearLogButton;
 - (IBAction)startTask:(id)sender;
 - (IBAction)stopTask:(id)sender;
 - (IBAction)chooseProject:(id)sender;
+- (IBAction)clearLog:(id)sender;
 
 /**
  * NSTask

@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="buildButton" destination="KSZ-kP-p1e" id="Re7-fr-K6L"/>
                 <outlet property="chooseProjectButton" destination="xg6-9o-20k" id="D0Z-2U-Phl"/>
+                <outlet property="clearLogButton" destination="6KB-Ue-COm" id="oGP-UF-563"/>
                 <outlet property="outputText" destination="jaf-ED-Jq6" id="DQW-SF-78a"/>
                 <outlet property="outputView" destination="e5s-gR-5HQ" id="moR-Rl-dnL"/>
                 <outlet property="provisioningProfileName" destination="Cme-f1-tII" id="GI7-Xs-aXj"/>
@@ -681,17 +682,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="270" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wMN-DT-q5p" userLabel="Stop Button">
-                        <rect key="frame" x="176" y="13" width="80" height="32"/>
-                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Fo-Au-BHL">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="stopTask:" target="Voe-Tx-rLC" id="oXx-il-we3"/>
-                            <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.isRunning" id="M4G-MY-lgj"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cme-f1-tII">
                         <rect key="frame" x="20" y="289" width="230" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Cityplaza Xmas 2015 Development" placeholderString="Provisioning Profile" drawsBackground="YES" id="ers-rB-9Ad">
@@ -700,6 +690,9 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qO4-DL-d4w" userLabel="Spinner">
+                        <rect key="frame" x="119" y="14" width="32" height="32"/>
+                    </progressIndicator>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KSZ-kP-p1e" userLabel="Build Button">
                         <rect key="frame" x="14" y="13" width="72" height="32"/>
                         <buttonCell key="cell" type="push" title="Build" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5w5-XW-dl5">
@@ -748,9 +741,27 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qO4-DL-d4w" userLabel="Spinner">
-                        <rect key="frame" x="119" y="14" width="32" height="32"/>
-                    </progressIndicator>
+                    <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KB-Ue-COm">
+                        <rect key="frame" x="99" y="13" width="72" height="32"/>
+                        <buttonCell key="cell" type="push" title="Clear log" bezelStyle="rounded" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l6s-7u-WcO">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="10" name=".HelveticaNeueDeskInterface-Regular"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="clearLog:" target="Voe-Tx-rLC" id="nor-qW-2FI"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wMN-DT-q5p" userLabel="Stop Button">
+                        <rect key="frame" x="184" y="13" width="72" height="32"/>
+                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Fo-Au-BHL">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="stopTask:" target="Voe-Tx-rLC" id="oXx-il-we3"/>
+                            <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.isRunning" id="M4G-MY-lgj"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="237" y="501"/>

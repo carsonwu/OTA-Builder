@@ -59,11 +59,10 @@
             [self.buildTask waitUntilExit];
             if (self.buildTask.terminationReason == NSTaskTerminationReasonExit) {
                 [self generatePlistFile];
+                self.clearLogButton.hidden = NO;
             }else{
                 NSLog(@"stop button clicked");
             }
-            
-            [self removeOutputTestView];
         }
         @catch (NSException *exception) {
             NSLog(@"Problem runnig task:%@", [exception description]);
@@ -77,6 +76,7 @@
 }
 
 - (void)removeOutputTestView{
+    self.clearLogButton.hidden = YES;
     [self.outputView setHidden:YES];
 }
 
@@ -108,6 +108,7 @@
         [self showAlertWithMessage:@"Please choose your project through \"Choose Project\" button before proceding."];
     }else{
         self.outputText.string = @"";
+        self.clearLogButton.hidden = YES;
         
         NSString *archiveFile = [NSString stringWithFormat:@"%@.xcarchive", projectName];
         NSString *provisioningProfile = self.provisioningProfileName.stringValue;
@@ -151,6 +152,10 @@
             self.chooseProjectButton.title = projectName;
         }
     }];
+}
+
+- (IBAction)clearLog:(id)sender {
+    [self removeOutputTestView];
 }
 
 @end
