@@ -18,7 +18,7 @@
                 <outlet property="clearLogButton" destination="6KB-Ue-COm" id="oGP-UF-563"/>
                 <outlet property="outputText" destination="jaf-ED-Jq6" id="DQW-SF-78a"/>
                 <outlet property="outputView" destination="e5s-gR-5HQ" id="moR-Rl-dnL"/>
-                <outlet property="provisioningProfileName" destination="Cme-f1-tII" id="GI7-Xs-aXj"/>
+                <outlet property="popupButton" destination="AzZ-t8-vil" id="NjR-8H-gug"/>
                 <outlet property="spinner" destination="qO4-DL-d4w" id="pCA-VF-aXi"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -682,14 +682,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="270" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cme-f1-tII">
-                        <rect key="frame" x="20" y="289" width="230" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Cityplaza Xmas 2015 Development" placeholderString="Provisioning Profile" drawsBackground="YES" id="ers-rB-9Ad">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="qO4-DL-d4w" userLabel="Spinner">
                         <rect key="frame" x="119" y="14" width="32" height="32"/>
                     </progressIndicator>
@@ -713,34 +705,6 @@
                             <action selector="chooseProject:" target="Voe-Tx-rLC" id="A0y-Yp-p55"/>
                         </connections>
                     </button>
-                    <scrollView hidden="YES" fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5s-gR-5HQ" userLabel="Task Output Area">
-                        <rect key="frame" x="0.0" y="50" width="270" height="310"/>
-                        <clipView key="contentView" ambiguous="YES" id="gHc-k8-gN8">
-                            <rect key="frame" x="1" y="1" width="253" height="308"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView ambiguous="YES" editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="jaf-ED-Jq6">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="308"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="253" height="308"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="253" height="308"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="oId-XU-Qz8">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3sC-gf-w5F">
-                            <rect key="frame" x="254" y="1" width="15" height="308"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
                     <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KB-Ue-COm">
                         <rect key="frame" x="99" y="13" width="72" height="32"/>
                         <buttonCell key="cell" type="push" title="Clear log" bezelStyle="rounded" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l6s-7u-WcO">
@@ -762,9 +726,56 @@
                             <binding destination="Voe-Tx-rLC" name="enabled" keyPath="self.isRunning" id="M4G-MY-lgj"/>
                         </connections>
                     </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzZ-t8-vil">
+                        <rect key="frame" x="17" y="289" width="236" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Choose Provisioning Profile" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="Pao-Rl-Fzf" id="S1h-Lu-bd9">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="izN-OI-iAe">
+                                <items>
+                                    <menuItem title="Choose Provisioning Profile" state="on" hidden="YES" id="Pao-Rl-Fzf"/>
+                                    <menuItem title="Item 2" id="X8p-tA-trw"/>
+                                    <menuItem title="Item 3" id="TFR-1t-B9y"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="chooseProvisioningProfile:" target="Voe-Tx-rLC" id="ilL-Qc-66P"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
             <point key="canvasLocation" x="237" y="501"/>
         </window>
+        <scrollView hidden="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="e5s-gR-5HQ" userLabel="Task Output Area">
+            <rect key="frame" x="0.0" y="0.0" width="270" height="310"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <clipView key="contentView" id="gHc-k8-gN8">
+                <rect key="frame" x="1" y="1" width="253" height="308"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="jaf-ED-Jq6">
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="308"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <size key="minSize" width="253" height="308"/>
+                        <size key="maxSize" width="463" height="10000000"/>
+                        <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <size key="minSize" width="253" height="308"/>
+                        <size key="maxSize" width="463" height="10000000"/>
+                    </textView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </clipView>
+            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="oId-XU-Qz8">
+                <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="3sC-gf-w5F">
+                <rect key="frame" x="254" y="1" width="15" height="308"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </scroller>
+            <point key="canvasLocation" x="641" y="506"/>
+        </scrollView>
     </objects>
 </document>

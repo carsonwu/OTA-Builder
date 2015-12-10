@@ -13,6 +13,8 @@
 		D824F4FC1C0D475400205A16 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D824F4FA1C0D475400205A16 /* MainMenu.xib */; };
 		D824F52B1C0FE3D000205A16 /* OTAScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = D824F52A1C0FE3D000205A16 /* OTAScript.sh */; };
 		D877462F1C15484D0075291A /* plistGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D877462E1C15484D0075291A /* plistGenerator.m */; };
+		D87746361C1827880075291A /* Provisioning.m in Sources */ = {isa = PBXBuildFile; fileRef = D87746321C1827880075291A /* Provisioning.m */; };
+		D87746371C1827880075291A /* SigningIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = D87746351C1827880075291A /* SigningIdentity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		D824F52A1C0FE3D000205A16 /* OTAScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = OTAScript.sh; sourceTree = "<group>"; };
 		D877462D1C15484D0075291A /* plistGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plistGenerator.h; sourceTree = "<group>"; };
 		D877462E1C15484D0075291A /* plistGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plistGenerator.m; sourceTree = "<group>"; };
+		D87746321C1827880075291A /* Provisioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provisioning.m; sourceTree = "<group>"; };
+		D87746331C1827880075291A /* Provisioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provisioning.h; sourceTree = "<group>"; };
+		D87746341C1827880075291A /* SigningIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigningIdentity.h; sourceTree = "<group>"; };
+		D87746351C1827880075291A /* SigningIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigningIdentity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,10 @@
 				D824F4F51C0D475400205A16 /* Supporting Files */,
 				D877462D1C15484D0075291A /* plistGenerator.h */,
 				D877462E1C15484D0075291A /* plistGenerator.m */,
+				D87746321C1827880075291A /* Provisioning.m */,
+				D87746331C1827880075291A /* Provisioning.h */,
+				D87746341C1827880075291A /* SigningIdentity.h */,
+				D87746351C1827880075291A /* SigningIdentity.m */,
 			);
 			path = "OTA Builder";
 			sourceTree = "<group>";
@@ -173,8 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87746361C1827880075291A /* Provisioning.m in Sources */,
 				D877462F1C15484D0075291A /* plistGenerator.m in Sources */,
 				D824F4F71C0D475400205A16 /* main.m in Sources */,
+				D87746371C1827880075291A /* SigningIdentity.m in Sources */,
 				D824F4F41C0D475400205A16 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

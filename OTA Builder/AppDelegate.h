@@ -14,19 +14,21 @@
     //project info
     NSString *projectFileFullPath;
     NSString *projectLocation, *xcodeProjectFile, *projectName, *dateString;
+    NSMutableArray *provisionings;
 }
 
 @property (weak) IBOutlet NSButton *buildButton;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
-@property (weak) IBOutlet NSTextField *provisioningProfileName;
 @property (unsafe_unretained) IBOutlet NSTextView *outputText;
 @property (weak) IBOutlet NSScrollView *outputView;
 @property (weak) IBOutlet NSButton *chooseProjectButton;
 @property (weak) IBOutlet NSButton *clearLogButton;
+@property (weak) IBOutlet NSPopUpButton *popupButton;
 - (IBAction)startTask:(id)sender;
 - (IBAction)stopTask:(id)sender;
 - (IBAction)chooseProject:(id)sender;
 - (IBAction)clearLog:(id)sender;
+- (IBAction)chooseProvisioningProfile:(id)sender;
 
 /**
  * NSTask

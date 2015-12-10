@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Provisioning.h"
 
 @interface AppDelegate ()
 
@@ -18,10 +19,34 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     hasChosenAProject = NO;
+    [self getProvisioningProfileInfo];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+- (void)getProvisioningProfileInfo{
+    provisionings = [[NSMutableArray alloc] init];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *LibPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *provisioningDir = [LibPath stringByAppendingString:@"/MobileDevice/Provisioning Profiles"];
+    NSError *error;
+    NSArray *provisioningArr = [fm contentsOfDirectoryAtPath:provisioningDir error:&error];
+    if (!error) {
+        for (NSString* file in provisioningArr){
+            if ([file hasPrefix:@"."])
+                continue;
+            Provisioning *provisioning = [[Provisioning alloc] initWithPath:[NSString stringWithFormat:@"%@/%@", provisioningDir, file]];
+            if ([provisioning isExpired])
+                continue;
+            [provisionings addObject:provisioning.name];
+        }
+        [provisionings sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        [self.popupButton removeAllItems];
+        [self.popupButton addItemsWithTitles:provisionings];
+        [self.popupButton insertItemWithTitle:@"Choose Provisioning Profile" atIndex:0];//add one more item and put it in the first as the default title.
+    }
 }
 
 - (void)runScriptWithArguments:(NSArray*)arguments{
@@ -111,7 +136,7 @@
         self.clearLogButton.hidden = YES;
         
         NSString *archiveFile = [NSString stringWithFormat:@"%@.xcarchive", projectName];
-        NSString *provisioningProfile = self.provisioningProfileName.stringValue;
+        NSString *provisioningProfile = self.popupButton.title;//self.provisioningProfileName.stringValue;
         //get current timestamp
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -156,6 +181,10 @@
 
 - (IBAction)clearLog:(id)sender {
     [self removeOutputTestView];
+}
+
+- (IBAction)chooseProvisioningProfile:(id)sender {
+    self.popupButton.title = self.popupButton.titleOfSelectedItem;
 }
 
 @end
