@@ -82,11 +82,18 @@
             
             [self.buildTask launch];
             [self.buildTask waitUntilExit];
-            if (self.buildTask.terminationReason == NSTaskTerminationReasonExit) {
-                [self generatePlistFile];
+            int status = [self.buildTask terminationStatus];
+            
+            if (status == 0){
+                NSLog(@"Task succeeded.");
+                if ([self.outputText.string containsString:@"EXPORT SUCCEEDED"]) {
+                    [self generatePlistFile];
+                }else{
+                    [self showAlertWithMessage:@"Fail to export ipa file, please check build log for more info."];
+                }
                 self.clearLogButton.hidden = NO;
             }else{
-                NSLog(@"stop button clicked");
+                NSLog(@"Task stop.");
             }
         }
         @catch (NSException *exception) {
