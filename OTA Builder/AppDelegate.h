@@ -13,7 +13,7 @@
     BOOL hasChosenAProject;
     //project info
     NSString *projectFileFullPath;
-    NSString *projectLocation, *xcodeProjectFile, *projectName, *dateString;
+    NSString *projectLocation, *xcodeProjectFile, *projectName, *dateString, *bundleId;
     NSMutableArray *provisionings;
 }
 

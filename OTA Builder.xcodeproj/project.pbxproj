@@ -15,6 +15,7 @@
 		D877462F1C15484D0075291A /* plistGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D877462E1C15484D0075291A /* plistGenerator.m */; };
 		D87746361C1827880075291A /* Provisioning.m in Sources */ = {isa = PBXBuildFile; fileRef = D87746321C1827880075291A /* Provisioning.m */; };
 		D87746371C1827880075291A /* SigningIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = D87746351C1827880075291A /* SigningIdentity.m */; };
+		D877463F1C1AC8EB0075291A /* otabuddy.sh in Resources */ = {isa = PBXBuildFile; fileRef = D877463E1C1AC8EB0075291A /* otabuddy.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D87746331C1827880075291A /* Provisioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provisioning.h; sourceTree = "<group>"; };
 		D87746341C1827880075291A /* SigningIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SigningIdentity.h; sourceTree = "<group>"; };
 		D87746351C1827880075291A /* SigningIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SigningIdentity.m; sourceTree = "<group>"; };
+		D877463E1C1AC8EB0075291A /* otabuddy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = otabuddy.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D824F52A1C0FE3D000205A16 /* OTAScript.sh */,
+				D877463E1C1AC8EB0075291A /* otabuddy.sh */,
 				D824F4F61C0D475400205A16 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -170,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D877463F1C1AC8EB0075291A /* otabuddy.sh in Resources */,
 				D824F52B1C0FE3D000205A16 /* OTAScript.sh in Resources */,
 				D824F4F91C0D475400205A16 /* Assets.xcassets in Resources */,
 				D824F4FC1C0D475400205A16 /* MainMenu.xib in Resources */,

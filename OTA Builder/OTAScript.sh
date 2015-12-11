@@ -22,3 +22,9 @@ xcodebuild -exportArchive -archivePath "${4}" -exportPath "${6}" -exportFormat i
 
 #delete the archive file after the export process completed
 rm -r "${4}"
+
+#run otabuddy script to generate plist file
+echo "*********************************"
+echo "Generating plist file"
+echo "*********************************"
+"${7}" plist "${6}.ipa" "${8}" "${6}.plist"

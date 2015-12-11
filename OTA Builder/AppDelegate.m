@@ -86,11 +86,11 @@
             
             if (status == 0){
                 NSLog(@"Task succeeded.");
-                if ([self.outputText.string containsString:@"EXPORT SUCCEEDED"]) {
-                    [self generatePlistFile];
-                }else{
-                    [self showAlertWithMessage:@"Fail to export ipa file, please check build log for more info."];
-                }
+//                if ([self.outputText.string containsString:@"EXPORT SUCCEEDED"]) {
+////                    [self generatePlistFile];
+//                }else{
+//                    [self showAlertWithMessage:@"Fail to export ipa file, please check build log for more info."];
+//                }
                 self.clearLogButton.hidden = NO;
             }else{
                 NSLog(@"Task stop.");
@@ -98,6 +98,7 @@
         }
         @catch (NSException *exception) {
             NSLog(@"Problem runnig task:%@", [exception description]);
+            [self showAlertWithMessage:@"Fail to export ipa file, please check build log for more info."];
         }
         @finally {
             [self.buildButton setEnabled:YES];
@@ -126,7 +127,7 @@
     plist.exportPath = projectLocation;
     plist.ftpUrl = @"www.google.com";
     plist.ipaTitle = projectName;
-    plist.targetBundleId = @"";
+    plist.targetBundleId = bundleId;
     plist.fileName = [NSString stringWithFormat:@"%@-%@", projectName, dateString];
     [plist generatePlistFile];
 }
@@ -157,6 +158,9 @@
         [arguments addObject:archiveFile];
         [arguments addObject:provisioningProfile];
         [arguments addObject:[NSString stringWithFormat:@"%@-%@", projectName, dateString]];
+        //added params for otabuddy script
+        [arguments addObject:[[NSBundle mainBundle] pathForResource:@"otabuddy" ofType:@"sh"]];
+        [arguments addObject:@"www.dfdsfdsgg.com"];
         
         [self.buildButton setEnabled:NO];
         [self.spinner startAnimation:self];
